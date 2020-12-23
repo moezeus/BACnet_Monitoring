@@ -13,8 +13,11 @@ We are using BACnet protocol simulator from [ScadaEngine](http://www.scadaengine
 
 ## IoT Architecture
 In general, IoT Architecture consist of a Device (send or receive some data/command), Gateways (Connector between the cloud and devices, or with the edge devices) and then the Cloud itself (receive the data/command from the enterprises). 
+
 ![IoT General Architecture](/BACnet_Pictures/IoT_General.png)
-For this project, we are defined the Bacnet Simulator from the [ScadaEngine](http://www.scadaengine.com/software6.html) as the devices, and then Python and node-red as the edge devices and finally [Google IoT Core](https://cloud.google.com/iot/docs/quickstart) as the Cloud Services. 
+
+For this project, we are defined the Bacnet Simulator from the [ScadaEngine](http://www.scadaengine.com/software6.html) as the devices, and then Python and node-red as the edge devices and finally [Google IoT Core](https://cloud.google.com/iot/docs/quickstart) as the Cloud Services.
+
 ![BACnet Monitoring Architecture](/BACnet_Pictures/BACnet_Architecture.PNG)
 
 ## Requirements
@@ -28,29 +31,39 @@ In order to use the code in this Repository, you need to install:
 ## Use the code Locally
 if all of the requirements have been fulfilled, the next step for local access is: 
 * clone this repository using `git clone` or download this repository code, place it on your project directory (if youre about to use jupyter lab in default, place it under (C:Users/$User/Your Project Folder)).
-    git clone https://github.com/moezeus/BACnet_Monitoring.git
+```
+git clone https://github.com/moezeus/BACnet_Monitoring.git
+```
 * Open your Jupyter Lab, using anaconda prompt, and then type `jupyter lab`, it will automatically opened in your default browser. open your project directory. 
 * Install some important lib : 
-    pip install configparser
-    pip install BAC0
-    pip install paho-mqtt
+```
+pip install configparser
+pip install BAC0
+pip install paho-mqtt
+```
   If it ask for admin user, you can open anaconda prompt in administrator and then run those command
 * Run the python by using the jupyter lab terminal, type `python Tubes_BACNET.py`. if you severe some error because of library/module dependencies, install it based on the missing modules. if you got error/something referred to `google-cloud-iotcore device node`, check the `Google Iot Core Integration sections` or simply disable the node.  
 * Open your command prompt, and then type `node-red`, to open the node-red, and then it would opened automatically in your default browser.  
 * import the JSON file on the node-red folder, to get BACnet monitoring edge and gateway services. and then press the `Deploy` button. After the deploy process, you would get some errors because of missing node modules. notes the missing modules, and then find it on `manage palletes` menu, then install it. 
 * After the modules are installed (no errors on deploy), you can then open the UI dashboard on `localhost:1880/ui/`. the UI is set for `1366*768` resolution, if your resolution differs, the UI may not shown in a good orders.
 * Turn on your BACnet simulator (either on other computers in same networks or on the virtual machine), and add your device objects with this criteria: (in order to meet the Python code)
-    Analog Input --> Instance 0
-    Analog Value --> Instance 1
-    Binary Input --> Instance 2
-    Binary Output -> Instance 3
-    Binary Value --> Instance 4
+```
+Analog Input --> Instance 0
+Analog Value --> Instance 1
+Binary Input --> Instance 2
+Binary Output -> Instance 3
+Binary Value --> Instance 4
+```
   Actually, you are free to choose the objects instance, but make sure to adjust it on the Python Code. this criteria is used if you are about to use our code purely. 
 * On the Node-red Home UI, press the `WHO IS?` button, and it will reveal your bacnet ID and devices objects. stop the who is command, and then notes the devices object adresses (something with `20:0x20........` or MS/TP adresses). open the command.ini using notepad, and then fills the device object addresses and instance, based on example that exists on the file. finally, save it. (notes: adjust the file based on the how much device found on the networks, if only one, remove/delete the other devices)
+
 ![Home GUI](/BACnet_Pictures/GUI_main.png)
+
 * after that, press the `CONNECT` button, if the process succesfully running, you will look at the device objects printed onto the table, otherwise, check the jupyter lab terminal to look at the error message.
 * if the Connect process passed, you can proceed to the display page, by pressing the `NEXT` button.
+
 ![Display Page](/BACnet_Pictures/GUI_display.png)
+
 * when everythings is ready, press the `START` button to start your data display. if you want to send command (currently available for BO,BV and AV), you can type example: `AV 0 124` <-- AV is the analog value, 0 is instance and 124 is the value to send. You can check it on the BACnet simulator to know whether it has changed or not. 
 
 ## Google IoT Core Integration
