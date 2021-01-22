@@ -80,7 +80,8 @@ Best procedure documented on google IoT Core [documentation](https://cloud.googl
 Thanks!!
 
 ## Special Thanks : 
-This works is supported by Lab-ME Teknik Fisika, Fakultas Teknologi Industri, Institut Teknologi Bandung. 
+This works is supported by Lab-ME Teknik Fisika, Fakultas Teknologi Industri, Institut Teknologi Bandung (2020)
+ 
  
 
 
